@@ -11,6 +11,8 @@ import java.util.List;
 @RestController
 public class StudentController {
 
+
+    // 단일 결과 값 반환
     // http://localhost:8080/student
     @GetMapping("student")
     public Student getStudent() {
@@ -25,6 +27,7 @@ public class StudentController {
     }
 
 
+    // 다수 결과 값 반환 -> list 사용
     // http://localhost:8080/students
     @GetMapping("students")
     public List<Student> getStudents() {
