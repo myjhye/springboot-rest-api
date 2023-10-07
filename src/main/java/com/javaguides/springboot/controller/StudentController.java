@@ -70,7 +70,7 @@ public class StudentController {
 
 
 
-    // 학생 정보를 생성하고 반환하는 post 요청 처리
+    // 5. 학생 정보를 생성하고 반환하는 post 요청 처리
     // http://localhost:8080/students/create
     // 요청 본문(body)에 json 형식의 학생 정보를 포함해야 함
     @PostMapping("students/create")
@@ -83,5 +83,36 @@ public class StudentController {
 
         return student;
     }
+
+
+
+    // 6. 학생 정보 업데이트하는 put 요청 처리
+    // http://localhost:8080/students/{id}/update
+    // 요청 본문(body)에 json 형식의 업데이트 할 학생 정보를 포함해야 함
+    @PutMapping("students/{id}/update")
+    public Student updateStudent(@RequestBody Student student, @PathVariable int id) {
+
+        System.out.println(student.getFirstName());
+        System.out.println(student.getLastName());
+
+        return student;
+
+    }
+
+    // 7. 학생 정보 삭제하는 delete 요청 처리
+    // http://localhost:8080/students/{id}/delete
+    @DeleteMapping("students/{id}/delete")
+    public String deleteStudent(@PathVariable int id) {
+
+        // 삭제할 학생 id 출력
+        System.out.println(id);
+
+        // 학생 정보 삭제하고 삭제 작업 결과 메세지 반환
+        return "학생 정보가 삭제되었습니다.";
+    }
+
+
+
+
 
 }
