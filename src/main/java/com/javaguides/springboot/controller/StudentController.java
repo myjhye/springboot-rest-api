@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("students") // base url
 public class StudentController {
 
 
@@ -33,7 +34,7 @@ public class StudentController {
 
     // 2. 학생 정보를 다수 결과 값으로 반환 -> list 사용
     // http://localhost:8080/students
-    @GetMapping("students")
+    @GetMapping
     public List<Student> getStudents() {
 
         // 예제 학생 정보 생성하고 반환
@@ -51,7 +52,7 @@ public class StudentController {
 
     // 3. 학생 정보를 경로 변수(path variable)로 반환
     // http://localhost:8080/students/1
-    @GetMapping("students/{id}")
+    @GetMapping("{id}")
     public Student studentPathVariable(@PathVariable int id) {
 
         // 학생 id를 경로변수로 받아 해당 학생 정보 반환
@@ -63,7 +64,7 @@ public class StudentController {
 
     // 4. 학생 정보를 요청 매개변수로 반환 -> request param
     // http://localhost:8080/students/query?id=1
-    @GetMapping("students/query")
+    @GetMapping("query")
     public Student studentRequestVariable(@RequestParam int id) {
 
         // 학생 id를 요청 매개변수로 받아 해당 학생 정보 반환
@@ -75,7 +76,7 @@ public class StudentController {
     // 5. 학생 정보를 생성하고 반환하는 post 요청 처리
     // http://localhost:8080/students/create
     // 요청 본문(body)에 json 형식의 학생 정보를 포함해야 함
-    @PostMapping("students/create")
+    @PostMapping("create")
     public Student createStudent(@RequestBody Student student) {
 
         // 화면(클라이언트)에서 전송된 학생 정보를 처리하고 저장 또는 출력
@@ -91,7 +92,7 @@ public class StudentController {
     // 6. 학생 정보 업데이트하는 put 요청 처리
     // http://localhost:8080/students/{id}/update
     // 요청 본문(body)에 json 형식의 업데이트 할 학생 정보를 포함해야 함
-    @PutMapping("students/{id}/update")
+    @PutMapping("{id}/update")
     public Student updateStudent(@RequestBody Student student, @PathVariable int id) {
 
         System.out.println(student.getFirstName());
@@ -103,7 +104,7 @@ public class StudentController {
 
     // 7. 학생 정보 삭제하는 delete 요청 처리
     // http://localhost:8080/students/{id}/delete
-    @DeleteMapping("students/{id}/delete")
+    @DeleteMapping("{id}/delete")
     public String deleteStudent(@PathVariable int id) {
 
         // 삭제할 학생 id 출력
