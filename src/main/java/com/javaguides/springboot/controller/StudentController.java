@@ -2,6 +2,8 @@ package com.javaguides.springboot.controller;
 
 
 import com.javaguides.springboot.bean.Student;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class StudentController {
     // 1. 학생 정보를 단일 결과 값으로 반환
     // http://localhost:8080/student
     @GetMapping("student")
-    public Student getStudent() {
+    public ResponseEntity<Student> getStudent() {
 
         // 예제 학생 정보 생성하고 반환
         Student student = new Student(
@@ -23,7 +25,7 @@ public class StudentController {
             "Yoo"
         );
 
-        return student;
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
 
