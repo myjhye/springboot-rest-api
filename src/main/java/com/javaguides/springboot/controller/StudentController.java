@@ -4,6 +4,7 @@ package com.javaguides.springboot.controller;
 import com.javaguides.springboot.bean.Student;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
 public class StudentController {
 
 
-    // 단일 결과 값 반환
+    // 1. 단일 결과 값 반환
     // http://localhost:8080/student
     @GetMapping("student")
     public Student getStudent() {
@@ -28,7 +29,7 @@ public class StudentController {
     }
 
 
-    // 다수 결과 값 반환 -> list 사용
+    // 2. 다수 결과 값 반환 -> list 사용
     // http://localhost:8080/students
     @GetMapping("students")
     public List<Student> getStudents() {
@@ -45,10 +46,20 @@ public class StudentController {
 
 
 
-    // path variable로 결과 값 반환
+    // 3. path variable로 결과 값 반환
     // http://localhost:8080/students/1
     @GetMapping("students/{id}")
     public Student studentPathVariable(@PathVariable int id) {
+        return new Student(id, "Jimin", "Yoo");
+    }
+
+
+
+
+    // 4. request param으로 결과 값 변환
+    // http://localhost:8080/students/query?id=1
+    @GetMapping("students/query")
+    public Student studentRequestVariable(@RequestParam int id) {
         return new Student(id, "Jimin", "Yoo");
     }
 
