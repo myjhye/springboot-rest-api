@@ -3,6 +3,7 @@ package com.javaguides.springboot.controller;
 
 import com.javaguides.springboot.bean.Student;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -39,6 +40,16 @@ public class StudentController {
         student.add(new Student(4, "Aeri", "Uchinaga"));
 
         return student;
+    }
+
+
+
+
+    // path variable로 결과 값 반환
+    // http://localhost:8080/students/1
+    @GetMapping("students/{id}")
+    public Student studentPathVariable(@PathVariable int id) {
+        return new Student(id, "Jimin", "Yoo");
     }
 
 }
